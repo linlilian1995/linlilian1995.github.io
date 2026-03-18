@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shenzhen Yihu Investment | Leading Private Fund Manager</title>
+    <meta name="description" content="深圳市翼虎投资管理有限公司 - 中国领先的私募证券投资基金管理人，70余项权威奖项，19年稳健发展">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #c9a227;
+            --accent-light: #eab308;
+            --text: #334155;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+        }
+        
+        .header.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .lang-toggle {
+            display: flex;
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 4px;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(201, 162, 39, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(201, 162, 39, 0.1) 0%, transparent 40%);
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201, 162, 39, 0.15);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: var(--accent-light);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 60px;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+        
+        .hero-stat {
+            text-align: left;
+        }
+        
+        .hero-stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-light);
+            line-height: 1;
+        }
+        
+        .hero-stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* About Section */
+        .about {
+            padding: 120px 40px;
+            background: var(--bg-light);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .section-desc {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-content p {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .feature-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .stat-value {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 120px 40px;
+            background: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-card {
+            background: var(--bg-light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .team-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 120%, rgba(201, 162, 39, 0.3) 0%, transparent 60%);
+        }
+        
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: 700;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+        
+        .team-body {
+            padding: 30px;
+        }
+        
+        .team-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .team-title {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .team-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .team-awards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .award-badge {
+            font-size: 11px;
+            padding: 4px 10px;
+            background: rgba(201, 162, 39, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 120px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 0% 100%, rgba(201, 162, 39, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 0%, rgba(201, 162, 39, 0.15) 0%, transparent 40%);
+        }
+        
+        .contact .section-label,
+        .contact .section-title,
+        .contact .section-desc {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact .section-desc {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+        
+        .contact-card h3 {
+            font-size: 22px;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .contact-card p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        
+        .contact-card a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-card a:hover {
+            color: var(--accent-light);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0a0e17;
+            padding: 40px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+        
+        /* Language Display */
+        .zh { display: block; }
+        .en { display: none; }
+        
+        body.lang-en .zh { display: none; }
+        body.lang-en .en { display: block; }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            margin: 6px 0;
+            transition: all 0.3s;
+        }
+        
+        @media (max-width: 968px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 30px; }
+            .hero-content { padding: 60px 20px; }
+            .nav-container { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">🦅</div>
+                <span>YIHU</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#about" class="zh">关于我们</a>
+                <a href="#about" class="en">About</a>
+                <a href="#team" class="zh">核心团队</a>
+                <a href="#team" class="en">Team</a>
+                <a href="#contact" class="zh">联系我们</a>
+                <a href="#contact" class="en">Contact</a>
+            </nav>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+                <button class="lang-btn" onclick="switchLang('en')">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>✦</span>
+                <span class="zh">中国领先的私募证券投资基金管理人</span>
+                <span class="en">Leading Private Securities Investment Fund Manager in China</span>
+            </div>
+            <h1>
+                <span class="zh">翼虎投资</span>
+                <span class="en">Yihu Investment</span>
+                <br>YIHU INVESTMENT
+            </h1>
+            <p class="hero-subtitle">
+                <span class="zh">成立于2006年，19年深耕资本市场，以"长期价值、产业趋势、极限思维"为投资理念，累计管理资产规模超百亿，为投资者创造持续稳健回报。</span>
+                <span class="en">Founded in 2006, with 19 years of deep expertise in capital markets, adhering to the investment philosophy of "Long-term Value, Industry Trends, and Extreme Thinking". Managing assets exceeding RMB 10 billion with consistently steady returns for investors.</span>
+            </p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">30+</div>
+                    <div class="hero-stat-label"><span class="zh">阳光私募产品</span><span class="en">Private Fund Products</span></div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">70+</div>
+                    <div class="hero-stat-label"><span class="zh">权威奖项</span><span class="en">Industry Awards</span></div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">19+</div>
+                    <div class="hero-stat-label"><span class="zh">年历史</span><span class="en">Years of Excellence</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><span class="zh">关于我们</span><span class="en">About Us</span></div>
+                <h2 class="section-title">
+                    <span class="zh">值得信赖的资产管理专家</span>
+                    <span class="en">Trusted Asset Management Expert</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="zh">19年风雨兼程，始终坚持价值投资，为投资者创造长期稳健回报</span>
+                    <span class="en">19 years of dedication to value investing, creating long-term steady returns for investors</span>
+                </p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-content">
+                    <p class="zh">
+                        深圳市翼虎投资管理有限公司成立于2006年11月，是中国领先的私募证券投资基金管理人之一。公司于2014年3月获得中国证券投资基金协会私募基金管理人资质，是国内首批50家阳光私募机构之一，亦是深圳地区最早成立的三家阳光私募之一，在行业内拥有深厚积淀与良好声誉。
+                    </p>
+                    <p class="en">
+                        Shenzhen Yihu Investment Management Co., Ltd. was established in November 2006 and is one of China's leading private securities investment fund managers. The company obtained its private fund manager qualification from the China Securities Investment Fund Association in March 2014, making it one of the first 50 sunshine private funds in China and one of the earliest established in Shenzhen.
+                    </p>
+                    <p class="zh">
+                        自2008年3月发行首只明星产品"中融信托·翼虎成长1期"以来，公司始终坚持长期价值投资理念，历经多轮牛熊转换，持续保持稳健的业绩表现。目前已成功发行并管理超过30只阳光私募产品，覆盖股票多头策略、指数增强策略、定投产品策略三大核心产品线。
+                    </p>
+                    <p class="en">
+                        Since the launch of our first flagship product "Zhongrong Trust · Yihu Growth Phase 1" in March 2008, the company has adhered to long-term value investment philosophy, maintaining steady performance through multiple market cycles. We have successfully issued and managed over 30 sunshine private fund products, covering three core strategies: Stock Long-only, Index Enhancement, and Dollar-Cost Averaging.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">🏆</div>
+                            <div class="feature-text"><span class="zh">5届金牛奖得主</span><span class="en">5-time Golden Bull Award</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🌏</div>
+                            <div class="feature-text"><span class="zh">香港子公司</span><span class="en">Hong Kong Subsidiary</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📈</div>
+                            <div class="feature-text"><span class="zh">持续稳健收益</span><span class="en">Consistent Returns</span></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🛡️</div>
+                            <div class="feature-text"><span class="zh">合规运作</span><span class="en">Compliant Operation</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">30+</div>
+                        <div class="stat-label"><span class="zh">只阳光私募产品</span><span class="en">Private Fund Products</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">70+</div>
+                        <div class="stat-label"><span class="zh">项权威奖项</span><span class="en">Industry Awards</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">19+</div>
+                        <div class="stat-label"><span class="zh">年投资经验</span><span class="en">Years Experience</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label"><span class="zh">大核心策略</span><span class="en">Core Strategies</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><span class="zh">核心团队</span><span class="en">Core Team</span></div>
+                <h2 class="section-title">
+                    <span class="zh">行业顶尖的投资专家团队</span>
+                    <span class="en">Industry-Leading Investment Experts</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="zh">汇聚海内外金融精英，平均从业经验超过15年</span>
+                    <span class="en">Bringing together financial elites from home and abroad with average industry experience exceeding 15 years</span>
+                </p>
+            </div>
+            
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">余</div>
+                    </div>
+                    <div class="team-body">
+                        <h3 class="team-name">
+                            <span class="zh">余定恒</span>
+                            <span class="en">Dingheng Yu</span>
+                        </h3>
+                        <div class="team-title">
+                            <span class="zh">创始人 & 主席</span>
+                            <span class="en">Founder & Chairman</span>
+                        </div>
+                        <p class="team-desc zh">
+                            毕业于清华五道口金融学院，高级工商管理硕士。具有25年境内外证券投资及投行经历，曾就职于珠海证券及平安证券。代表产品"翼虎成长一期"长跑14年，业绩名列市场前茅。累计荣获70余项权威大奖，包括5届中国证券报金牛私募基金经理、3届英华私募基金最佳投资经理等。
+                        </p>
+                        <p class="team-desc en">
+                            Graduated from Tsinghua PBC School of Finance with an EMBA. 25 years of experience in domestic and overseas securities investment and investment banking, formerly at Zhuhai Securities and Ping An Securities. His flagship product "Yihu Growth Phase I" has delivered outstanding performance for 14 years, ranking among the top in the market. Winner of over 70 industry awards including 5-time Golden Bull Award for Best Private Fund Manager.
+                        </p>
+                        <div class="team-awards">
+                            <span class="award-badge">5届金牛奖</span>
+                            <span class="award-badge">3届英华奖</span>
+                            <span class="award-badge">福布斯最佳</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">肖</div>
+                    </div>
+                    <div class="team-body">
+                        <h3 class="team-name">
+                            <span class="zh">肖歆</span>
+                            <span class="en">Xin Xiao</span>
+                        </h3>
+                        <div class="team-title">
+                            <span class="zh">董事 & 负责人员 (香港)</span>
+                            <span class="en">Director & RO (HK)</span>
+                        </div>
+                        <p class="team-desc zh">
+                            现任香港翼虎投资管理有限公司董事及负责人员。曾任深圳翼虎投资管理有限公司总经理，全面负责30余只阳光私募产品的整体运营，资产管理规模达20亿元人民币。拥有逾十年金融行业管理经验，持有中南财经政法大学硕士学位。
+                        </p>
+                        <p class="team-desc en">
+                            Currently Director and Responsible Officer at Hong Kong Yihu Investment Management Co., Ltd. Former General Manager of Shenzhen Yihu Investment, fully responsible for operations of over 30 private fund products with AUM of RMB 2 billion. Holds a Master's degree from Zhongnan University of Economics and Law with over 10 years of financial industry management experience.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">程</div>
+                    </div>
+                    <div class="team-body">
+                        <h3 class="team-name">
+                            <span class="zh">程俊龙</span>
+                            <span class="en">Junlong Cheng</span>
+                        </h3>
+                        <div class="team-title">
+                            <span class="zh">负责人员 (香港)</span>
+                            <span class="en">Responsible Officer (HK)</span>
+                        </div>
+                        <p class="team-desc zh">
+                            现任香港翼虎投资管理有限公司负责人员。曾任职多家资产管理公司及金融机构，拥有超过18年多元化金融市场专业知识，涵盖投资组合管理、资产管理、传统金融、加密货币、交易、基金成立、对冲基金及高管管理。拥有英国肯特大学精算科学学位。
+                        </p>
+                        <p class="team-desc en">
+                            Responsible Officer at Hong Kong Yihu Investment Management Co., Ltd. Previously worked at multiple asset management companies and financial institutions with over 18 years of expertise in diversified financial markets, covering portfolio management, traditional finance, cryptocurrency, trading, fund establishment, hedge funds, and executive management. Holds a degree in Actuarial Science from University of Kent, UK.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label"><span class="zh">联系我们</span><span class="en">Contact Us</span></div>
+                <h2 class="section-title">
+                    <span class="zh">开启您的财富之旅</span>
+                    <span class="en">Start Your Wealth Journey</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="zh">专业团队随时为您服务</span>
+                    <span class="en">Professional team ready to serve you</span>
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>🏢 <span class="zh">深圳总部</span><span class="en">Shenzhen HQ</span></h3>
+                    <p><strong><span class="zh">地址：</span><span class="en">Address: </span></strong><span class="zh">深圳市福田区福中路荣超经贸中心16楼</span><span class="en">16/F, Rongchao Economic & Trade Center, Fuzhong Road, Futian District, Shenzhen</span></p>
+                    <p><strong><span class="zh">电话：</span><span class="en">Tel: </span></strong>0755-82783825</p>
+                    <p><strong><span class="zh">微信：</span><span class="en">WeChat: </span></strong>szyihu-888</p>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>🌏 <span class="zh">香港公司</span><span class="en">Hong Kong Office</span></h3>
+                    <p><strong><span class="zh">地址：</span><span class="en">Address: </span></strong><span class="zh">香港中环</span><span class="en">Central, Hong Kong</span></p>
+                    <p><strong>Email:</strong> <a href="mailto:xiaoxin@hkflyingtiger.com">xiaoxin@hkflyingtiger.com</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:jon.ching@hkflyingtiger.com">jon.ching@hkflyingtiger.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Shenzhen Yihu Investment Management Co., Ltd. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Language Switch
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (lang === 'en') {
+                document.body.classList.add('lang-en');
+            } else {
+                document.body.classList.remove('lang-en');
+            }
+        }
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
